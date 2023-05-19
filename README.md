@@ -1,10 +1,6 @@
 ### Installation
 ------------
 
-This module only works with SilverStripe 4.1+.
-
-For a version compatible with SilverStripe 3, please use a `1.x` release.
-
 The easiest way is to use [composer](https://getcomposer.org/):
 
     composer require toastnz/theme-colours
