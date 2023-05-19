@@ -1,0 +1,22 @@
+---
+Name: toastcolours
+---
+
+Page:
+  extensions:
+    - Toast\ThemeColours\Extensions\PageExtension
+PageController:
+  extensions:
+    - Toast\ThemeColours\Extensions\PageControllerExtension
+
+Toast\ThemeColours\Models:
+  default_colours:
+    - primary: null
+    - secondary: null
+    - black: '000000'
+    - white: 'ffffff'
+
+
+SilverStripe\SiteConfig\SiteConfig:
+  extensions:
+    - Toast\ThemeColours\Extensions\SiteConfigExtension
