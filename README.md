@@ -23,6 +23,18 @@ Toast\ThemeColours\Models:
 
 ### Usage
 -------------
+### Colour functions 
+```getColourCustomID()``` returns either the ID set in the config.yml, or for additional colours, returns the ID
+
+```getColourPaletteID()``` returns a combination of the getColourCustomID() and the Title, so the data object can be found from the selected colour palette field value.
+
+```getColourClassName()``` returns `c-` + `getColourCustomID()` so the css class is unique. `c-` is there to represent `colour` and to ensure the class does not start with a number.
+
+```getColourBrightness()``` returns either `dark` or `light` based on their luminocity of the colour value.
+
+```getColourHexCode()``` returns the hex value of the colour
+
+```getColourClasses()``` will return a combination of the `getColourClassName()` and `getColourBrightness()`
 ### Helper functions 
 ```Helper::getThemeColourPalette()``` to loop through the $themeColours and add the Title and Value to the $array for ColorPaletteField to use.
 
