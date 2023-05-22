@@ -46,8 +46,11 @@ class Helper
     static function getThemeColourPalette()
     {
         $themeColours = self::getThemeColoursArray();
-
-        $array = [];
+        
+        // We want a default 'None' option so add it to the $array
+        $array = [
+            'None' => '',
+        ];
 
         // Loop through the $themeColours and add the Title and Value to the $array
         foreach($themeColours as $themeColour){
