@@ -73,4 +73,12 @@ class SiteConfigExtension extends DataExtension
 
         }
     }
+
+    public function onAfterWrite()
+    {
+        parent::onAfterWrite();
+
+        $Colour = new ThemeColour();
+        $Colour->requireDefaultRecords();
+    }
 }
