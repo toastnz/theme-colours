@@ -14,6 +14,7 @@ use SilverStripe\Core\Environment;
 use SilverStripe\Forms\EmailField;
 use SilverStripe\Forms\HeaderField;
 use SilverStripe\ORM\DataExtension;
+use SilverStripe\Security\Security;
 use Sheadawson\Linkable\Models\Link;
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Config\Config;
