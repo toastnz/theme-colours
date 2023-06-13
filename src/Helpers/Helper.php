@@ -102,8 +102,10 @@ class Helper
     {
         // Get the current site's config
         $siteConfig = SiteConfig::current_site_config();
+
         // Get the site' ID and append to the css file name
         $styleID = ($siteConfig->ID == 1) ? 'mainsite' : 'subsite-' . $siteConfig->ID;
+
         // Get the site's colours
         $colours = $siteConfig->ThemeColours();
 
