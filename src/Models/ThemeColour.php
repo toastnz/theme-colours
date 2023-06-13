@@ -24,6 +24,7 @@ class ThemeColour extends DataObject
         'SortOrder' => 'Int',
         'Title' => 'Varchar(255)',
         'CustomID' => 'Varchar(255)',
+        ';SiteConfigID' => 'Int',
         'Colour' => 'Color',
     ];
 
@@ -150,6 +151,7 @@ class ThemeColour extends DataObject
             $colour = new ThemeColour();
             $colour->Title = $key;
             $colour->CustomID = $key;
+            $colour->SiteConfigID = $siteConfig->ID;
             if ($value) $colour->Colour = $value;
             $colour->write();
             $siteConfig->ThemeColours()->add($colour->ID);
