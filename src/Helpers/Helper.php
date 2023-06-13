@@ -12,8 +12,6 @@ use SilverStripe\Core\Config\Config;
 use DirectoryIterator;
 use SilverStripe\ORM\FieldType\DBField;
 use SilverStripe\ORM\FieldType\DBHTMLText;
-use SilverStripe\Subsites\Model\Subsite;
-use SilverStripe\Subsites\State\SubsiteState;
 
 class Helper
 {

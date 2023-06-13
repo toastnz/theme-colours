@@ -25,10 +25,6 @@ class PageControllerExtension extends Extension
     public function onBeforeInit()
     {
         $themeCssFilePath = null;
-        
-        if(class_exists(Subsite::class)){
-            $config = Config::inst()->get(Subsite::class, 'has_subsites_colours');
-        }
 
         // Grab the SiteConfig
         $siteConfig = SiteConfig::current_site_config();
