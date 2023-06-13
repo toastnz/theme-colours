@@ -27,11 +27,11 @@ class Helper
         return false;
     }
     
-    static function getThemeColoursArray()
+    static function getThemeColoursArray($id = null)
     {
         $array=[];
 
-        $siteConfig = SiteConfig::get()->byId(1);
+        $siteConfig = $id ? SiteConfig::get()->byID($id) : SiteConfig::current_site_config();
 
         if ($colours = $siteConfig->ThemeColours()){
             foreach($colours as $colour){
@@ -43,9 +43,9 @@ class Helper
         return $array;
     }
 
-    static function getThemeColourPalette()
+    static function getThemeColourPalette($id = null)
     {
-        $themeColours = self::getThemeColoursArray();
+        $themeColours = self::getThemeColoursArray($id);
         
         // We want a default 'None' option so add it to the $array
         $array = [
@@ -71,18 +71,6 @@ class Helper
             }
         }
     }
-
-    // static function generateCSSFiles($themeCssFilePath)
-    // {
-    //     if(!$themeCssFilePath){
-    //         return ;
-    //     }
-   
-    //     if (!file_exists($themeCssFilePath)){
-    //         $regenerateTask = new GenerateThemeCssFileTask;
-    //         $regenerateTask->run(Controller::curr()->getRequest());
-    //     }
-    // }
 
     static function getColourFormatsForTinyMCE()
     {
@@ -114,8 +102,10 @@ class Helper
     {
         // Get the current site's config
         $siteConfig = SiteConfig::current_site_config();
+
         // Get the site' ID and append to the css file name
         $styleID = ($siteConfig->ID == 1) ? 'mainsite' : 'subsite-' . $siteConfig->ID;
+
         // Get the site's colours
         $colours = $siteConfig->ThemeColours();
 
@@ -176,44 +166,4 @@ class Helper
         }
     }
 
-    // static function changeColourBrightness($hex, $percent)
-    // {
-    //     // Work out if hash given
-    //     $hash = '';
-    //     if (stristr($hex, '#')) {
-    //         $hex = str_replace('#', '', $hex);
-    //         $hash = '#';
-    //     }
-    //     /// HEX TO RGB
-    //     $rgb = [hexdec(substr($hex, 0, 2)), hexdec(substr($hex, 2, 2)), hexdec(substr($hex, 4, 2))];
-    //     //// CALCULATE
-    //     for ($i = 0; $i < 3; $i++) {
-    //         // See if brighter or darker
-    //         if ($percent > 0) {
-    //             // Lighter
-    //             $rgb[$i] = round($rgb[$i] * $percent) + round(255 * (1 - $percent));
-    //         } else {
-    //             // Darker
-    //             $positivePercent = $percent - ($percent * 2);
-    //             $rgb[$i] = round($rgb[$i] * (1 - $positivePercent)); // round($rgb[$i] * (1-$positivePercent));
-    //         }
-    //         // In case rounding up causes us to go to 256
-    //         if ($rgb[$i] > 255) {
-    //             $rgb[$i] = 255;
-    //         }
-    //     }
-    //     //// RBG to Hex
-    //     $hex = '';
-    //     for ($i = 0; $i < 3; $i++) {
-    //         // Convert the decimal digit to hex
-    //         $hexDigit = dechex($rgb[$i]);
-    //         // Add a leading zero if necessary
-    //         if (strlen($hexDigit) == 1) {
-    //             $hexDigit = "0" . $hexDigit;
-    //         }
-    //         // Append to the hex string
-    //         $hex .= $hexDigit;
-    //     }
-    //     return $hash . $hex;
-    // }
 }

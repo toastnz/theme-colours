@@ -14,6 +14,7 @@ use SilverStripe\Core\Environment;
 use SilverStripe\Forms\EmailField;
 use SilverStripe\Forms\HeaderField;
 use SilverStripe\ORM\DataExtension;
+use SilverStripe\Security\Security;
 use Sheadawson\Linkable\Models\Link;
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Config\Config;
@@ -46,8 +47,7 @@ class SiteConfigExtension extends DataExtension
         /** -----------------------------------------
          * Theme
          * ----------------------------------------*/
-
-        if (Helper::isSuperAdmin()) {
+        if (Security::database_is_ready() && Helper::isSuperAdmin()) {
 
             $coloursConfig = GridFieldConfig_RecordEditor::create(50);
             $coloursConfig->addComponent(GridFieldOrderableRows::create('SortOrder'));

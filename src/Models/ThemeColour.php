@@ -126,8 +126,8 @@ class ThemeColour extends DataObject
 
         if ($this->ID) Helper::generateCSSFiles();
 
-        // $regenerateTask = new GenerateThemeCssFileTask;
-        // $regenerateTask->run(Controller::curr()->getRequest());
+        $regenerateTask = new GenerateThemeCssFileTask;
+        $regenerateTask->run(Controller::curr()->getRequest());
     }
 
     public function requireDefaultRecords()
