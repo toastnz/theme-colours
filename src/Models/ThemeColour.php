@@ -24,7 +24,7 @@ class ThemeColour extends DataObject
         'SortOrder' => 'Int',
         'Title' => 'Varchar(255)',
         'CustomID' => 'Varchar(255)',
-        ';SiteConfigID' => 'Int',
+        'SiteConfigID' => 'Int',
         'Colour' => 'Color',
     ];
 
@@ -64,8 +64,8 @@ class ThemeColour extends DataObject
             $fields->insertAfter('Title', LiteralField::create('', '<div class="message notice">Colour field will become available after creating.</div>'));
         }
 
-        // Hide the CustomID field
-        $fields->removeByName(['CustomID']);
+        // Hide the CustomID and SiteConfigID fields
+        $fields->removeByName(['CustomID', 'SiteConfigID']);
 
         return $fields;
     }
