@@ -31,7 +31,7 @@ class PageControllerExtension extends Extension
         $siteID = $siteConfig->ID;
 
         // Get the theme ID / Name
-        $theme = ($siteID === 1) ? 'mainsite' : 'subsite-' . $siteID;
+        $theme = ($siteID == 1) ? 'mainsite' : 'subsite-' . $siteID;
 
         $themeCssFilePath = '/app/client/styles/' . $theme . '-theme.css';
 
