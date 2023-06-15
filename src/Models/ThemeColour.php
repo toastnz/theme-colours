@@ -44,7 +44,7 @@ class ThemeColour extends DataObject
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-        $fields->removeByName(['SortOrder','SiteConfigID','ColourClassName','CustomID']);
+        $fields->removeByName(['SortOrder','SiteConfig','ColourClassName','CustomID']);
 
         $fields->addFieldsToTab('Root.Main', [
             TextField::create('Title', 'Title')
