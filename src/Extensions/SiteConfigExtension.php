@@ -77,8 +77,10 @@ class SiteConfigExtension extends DataExtension
     public function onAfterWrite()
     {
         parent::onAfterWrite();
-
-        $Colour = new ThemeColour();
-        $Colour->requireDefaultRecords();
+        // only create themecolour if it already exists and no themecolours at all
+        if($this->owner->ID && !$this->owner->ThemeColours()->exists()){
+            $colour = new ThemeColour();
+            $colour->requireDefaultRecords();
+        }
     }
 }

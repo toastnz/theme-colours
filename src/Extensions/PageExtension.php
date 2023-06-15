@@ -27,22 +27,24 @@ class PageControllerExtension extends Extension
         $themeCssFilePath = null;
 
         // Grab the SiteConfig
-        $siteConfig = SiteConfig::current_site_config();
-        $siteID = $siteConfig->ID;
+        if($siteConfig =  Helper::getCurrentSiteConfig()){
+            $siteID = $siteConfig->ID;
 
-        // Get the theme ID / Name
-        $theme = ($siteID == 1) ? 'mainsite' : 'subsite-' . $siteID;
-
-        $themeCssFilePath = '/app/client/styles/' . $theme . '-theme.css';
-
-        if ($themeCssFilePath){
-            if (!file_exists(Director::baseFolder() .$themeCssFilePath)){
-                $result = Helper::generateCSSFiles($themeCssFilePath);
-            }
+            // Get the theme ID / Name
+            $theme = ($siteID == 1) ? 'mainsite' : 'subsite-' . $siteID;
     
-            if (file_exists(Director::baseFolder() .$themeCssFilePath)) {
-                Requirements::customCSS(file_get_contents(Director::baseFolder() .$themeCssFilePath));
+            $themeCssFilePath = '/app/client/styles/' . $theme . '-theme.css';
+    
+            if ($themeCssFilePath){
+                if (!file_exists(Director::baseFolder() .$themeCssFilePath)){
+                    $result = Helper::generateCSSFiles($themeCssFilePath);
+                }
+        
+                if (file_exists(Director::baseFolder() .$themeCssFilePath)) {
+                    Requirements::customCSS(file_get_contents(Director::baseFolder() .$themeCssFilePath));
+                }
             }
         }
+       
     }
 }

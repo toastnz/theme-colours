@@ -24,7 +24,6 @@ class ThemeColour extends DataObject
         'SortOrder' => 'Int',
         'Title' => 'Varchar(255)',
         'CustomID' => 'Varchar(255)',
-        'SiteConfigID' => 'Int',
         'Colour' => 'Color',
     ];
 
@@ -44,7 +43,7 @@ class ThemeColour extends DataObject
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
-        $fields->removeByName(['SortOrder','SiteConfig','ColourClassName']);
+        $fields->removeByName(['SortOrder','SiteConfigID','ColourClassName','CustomID']);
 
         $fields->addFieldsToTab('Root.Main', [
             TextField::create('Title', 'Title')
@@ -63,9 +62,6 @@ class ThemeColour extends DataObject
             $fields->removeByName(['Colour']);
             $fields->insertAfter('Title', LiteralField::create('', '<div class="message notice">Colour field will become available after creating.</div>'));
         }
-
-        // Hide the CustomID and SiteConfigID fields
-        $fields->removeByName(['CustomID', 'SiteConfigID']);
 
         return $fields;
     }
@@ -125,37 +121,36 @@ class ThemeColour extends DataObject
     {
         parent::onAfterWrite();
 
-        if ($this->ID) Helper::generateCSSFiles();
-
-        $regenerateTask = new GenerateThemeCssFileTask;
-        $regenerateTask->run(Controller::curr()->getRequest());
+         // if database and siteconfig is ready, run this
+         if (Security::database_is_ready()) {
+            if ($this->ID && Helper::getCurrentSiteConfig()) Helper::generateCSSFiles();
+        }
     }
 
     public function requireDefaultRecords()
     {
         parent::requireDefaultRecords();
 
-        $siteConfig = SiteConfig::current_site_config();
-
-        foreach ($this->getDefaultColours() as $colour) {
-            $key = key($colour);
-            $value = $colour[$key];
-
-            $existingRecord = $siteConfig->ThemeColours()->filter([
-                'CustomID' => $key,
-                'SiteConfigID' => $siteConfig->ID
-            ])->first();
-
-            if ($existingRecord) continue;
-
-            $colour = new ThemeColour();
-            $colour->Title = $key;
-            $colour->CustomID = $key;
-            $colour->SiteConfigID = $siteConfig->ID;
-            if ($value) $colour->Colour = $value;
-            $colour->write();
-            $siteConfig->ThemeColours()->add($colour->ID);
-            DB::alteration_message("ThemeColour '$key' created", 'created');
+        if($siteConfig = Helper::getCurrentSiteConfig()){
+            foreach ($this->getDefaultColours() as $colour) {
+                $key = key($colour);
+                $value = $colour[$key];
+       
+                $existingRecord = $siteConfig->ThemeColours()->filter([
+                    'CustomID' => $key,
+                    'SiteConfig.ID' => $siteConfig->ID
+                ])->first();
+    
+                if ($existingRecord) break;
+    
+                $colour = new ThemeColour();
+                $colour->Title = $key;
+                $colour->CustomID = $key;
+                if ($value) $colour->Colour = $value;
+                $colour->write();
+                $siteConfig->ThemeColours()->add($colour->ID);
+                DB::alteration_message("ThemeColour '$key' created", 'created');
+            }
         }
     }
 
