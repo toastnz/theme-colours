@@ -7,6 +7,7 @@ use SilverStripe\ORM\DataObject;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextField;
 use Toast\Forms\IconOptionsetField;
+use SilverStripe\Security\Security;
 use SilverStripe\Control\Controller;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\RequiredFields;
