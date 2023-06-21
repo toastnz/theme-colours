@@ -142,7 +142,7 @@ class ThemeColour extends DataObject
                     'SiteConfig.ID' => $siteConfig->ID
                 ])->first();
     
-                if ($existingRecord) break;
+                if ($existingRecord) continue;
     
                 $colour = new ThemeColour();
                 $colour->Title = $key;
