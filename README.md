@@ -11,6 +11,8 @@ Run `dev/build` afterwards.
 -------------
 
 Add the following to your `config.yml` (optional) to generate default colours on dev/build
+Colours with a hex value will be locked and not editable in the CMS
+Colours with null value will be editable in the CMS
 
 ```yaml
 Toast\ThemeColours\Models:
