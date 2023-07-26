@@ -31,9 +31,6 @@
     "heyday/silverstripe-colorpalette": "^2.0"
   },
   "extra": {
-    "resources-dir": "_resources",
-    "expose": [
-        "client/images"
-    ]
+    "resources-dir": "_resources"
   }
 }
