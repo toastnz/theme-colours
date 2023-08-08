@@ -71,6 +71,18 @@ class Helper
         }
     }
 
+    static function getThemeColourFromID($ID)
+    {
+        $themeColours = self::getThemeColoursArray();
+
+        // Loop through the $themeColours and return the object that matches the $ID
+        foreach($themeColours as $themeColour){
+            if ($ID == $themeColour->CustomID) {
+                return $themeColour;
+            }
+        }
+    }
+
     static function getColourFormatsForTinyMCE()
     {
         $colours = self::getThemeColoursArray();
