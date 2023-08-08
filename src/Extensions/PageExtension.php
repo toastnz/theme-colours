@@ -13,12 +13,12 @@ use SilverStripe\SiteConfig\SiteConfig;
 
 class PageExtension extends DataExtension
 {
-    public function getThemeColour($colour)
+    public function getThemeColour($colour = null)
     {
         return ($colour) ? Helper::getThemeColourFromColourPaletteID($colour) : null;
     }
 
-    public function getThemeColourFromID($colour)
+    public function getThemeColourFromID($colour = null)
     {
         return ($colour) ? Helper::getThemeColourFromID($colour) : null;
     }
