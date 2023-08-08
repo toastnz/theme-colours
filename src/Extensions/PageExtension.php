@@ -15,7 +15,12 @@ class PageExtension extends DataExtension
 {
     public function getThemeColour($colour)
     {
-        return Helper::getThemeColourFromColourPaletteID($colour);
+        return ($colour) ? Helper::getThemeColourFromColourPaletteID($colour) : null;
+    }
+
+    public function getThemeColourFromID($colour)
+    {
+        return ($colour) ? Helper::getThemeColourFromID($colour) : null;
     }
 }
 
