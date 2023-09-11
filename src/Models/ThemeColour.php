@@ -10,6 +10,7 @@ use Toast\Forms\IconOptionsetField;
 use SilverStripe\Security\Security;
 use SilverStripe\Control\Controller;
 use SilverStripe\Forms\LiteralField;
+use SilverStripe\Forms\OptionsetField;
 use SilverStripe\Forms\RequiredFields;
 use Toast\ThemeColours\Helpers\Helper;
 use SilverStripe\SiteConfig\SiteConfig;
@@ -26,6 +27,7 @@ class ThemeColour extends DataObject
         'Title' => 'Varchar(255)',
         'CustomID' => 'Varchar(255)',
         'Colour' => 'Color',
+        'ThemeColourTextColour' => 'Varchar(30)'
     ];
 
     private static $belongs_many_many = [
@@ -57,6 +59,10 @@ class ThemeColour extends DataObject
                 ColorField::create('Colour', 'Colour')
                     ->setReadOnly(!$this->canChangeColour())
                     ->setDescription($this->canChangeColour() ? 'Please select a colour' : 'This is the default theme colour "' . $this->CustomID . '" and cannot be changed.'),
+                OptionsetField::create('ThemeColourTextColour', 'Default Text Appearance', [
+                    'light' => 'Light',
+                    'dark' => 'Dark'
+                ])->setDescription('Select the text colour to be used when this theme colour is used as a background. If left unselected, a calculation will be made to determine the best text colour for legibility.')
             ]);
         } else {
             // Hide the CustomID field
@@ -198,6 +204,12 @@ class ThemeColour extends DataObject
     // Method to return Brightness
     public function getColourBrightness()
     {
+        // First let's check if the ThemeColourTextColour is set
+        if ($this->ThemeColourTextColour) {
+            // If it is, return that
+            return $this->ThemeColourTextColour;
+        }
+
         $hex = $this->Colour ?: 'ffffff';
         $r = hexdec(substr($hex,0,2));
         $g = hexdec(substr($hex,2,2));
