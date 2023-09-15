@@ -9,6 +9,7 @@ use SilverStripe\View\Requirements;
 use SilverStripe\Core\Config\Config;
 use Toast\ThemeColours\Helpers\Helper;
 use SilverStripe\SiteConfig\SiteConfig;
+use SilverStripe\Core\Manifest\ModuleResourceLoader;
 
 
 class PageExtension extends DataExtension
