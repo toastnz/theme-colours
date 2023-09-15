@@ -120,7 +120,13 @@ class Helper
             $colours = $siteConfig->ThemeColours();
             // If we have colours
             if ($colours) {
-                $CSSFilePath = Director::baseFolder() . '/app/client/styles/';
+                //get folder path from config
+               $folderPath = Config::inst()->get(SiteConfig::class, 'css_folder_path');
+               // if folder doesnt exist, create it
+               if (!file_exists(Director::baseFolder() . $folderPath)) {
+                   mkdir(Director::baseFolder() . $folderPath, 0777, true);
+               }
+               $CSSFilePath = Director::baseFolder() . $folderPath;
                 $themeCSSFilePath = $CSSFilePath . $styleID . '-theme.css';
                 $editorCSSFilePath = $CSSFilePath . $styleID . '-editor.css';
 
