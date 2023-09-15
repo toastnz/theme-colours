@@ -15,11 +15,11 @@ Toast\ThemeColours\Models:
     - secondary: null
     - black: '000000'
     - white: 'ffffff'
-  css_folder_path: '/public/assets/styles/'
 
 SilverStripe\SiteConfig\SiteConfig:
   extensions:
     - Toast\ThemeColours\Extensions\SiteConfigExtension
+  css_folder_path: '/public/assets/styles/'
 
 SilverStripe\ORM\DatabaseAdmin:
   extensions:
