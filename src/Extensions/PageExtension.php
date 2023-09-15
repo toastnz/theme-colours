@@ -38,7 +38,8 @@ class PageControllerExtension extends Extension
             // Get the theme ID / Name
             $theme = ($siteID == 1) ? 'mainsite' : 'subsite-' . $siteID;
     
-            $themeCssFilePath = '/app/client/styles/' . $theme . '-theme.css';
+            $folderPath = Config::inst()->get(SiteConfig::class, 'css_folder_path');
+            $themeCssFilePath = $folderPath . $theme . '-theme.css';
     
             if ($themeCssFilePath){
                 if (!file_exists(Director::baseFolder() .$themeCssFilePath)){
@@ -46,7 +47,9 @@ class PageControllerExtension extends Extension
                 }
         
                 if (file_exists(Director::baseFolder() .$themeCssFilePath)) {
-                    Requirements::customCSS(file_get_contents(Director::baseFolder() .$themeCssFilePath));
+                    // Requirements::customCSS(file_get_contents(Director::baseFolder() .$themeCssFilePath));
+                    $cssFile = ModuleResourceLoader::resourceURL($themeCssFilePath);
+                    Requirements::css($cssFile);
                 }
             }
         }
