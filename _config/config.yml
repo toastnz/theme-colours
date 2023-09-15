@@ -20,3 +20,7 @@ Toast\ThemeColours\Models:
 SilverStripe\SiteConfig\SiteConfig:
   extensions:
     - Toast\ThemeColours\Extensions\SiteConfigExtension
+
+SilverStripe\ORM\DatabaseAdmin:
+  extensions:
+    - Toast\ThemeColours\Extensions\DatabaseAdminExtension
