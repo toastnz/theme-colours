@@ -48,9 +48,9 @@ class PageControllerExtension extends Extension
                 }
         
                 if (file_exists(Director::baseFolder() .$themeCssFilePath)) {
-                    // Requirements::customCSS(file_get_contents(Director::baseFolder() .$themeCssFilePath));
-                    $cssFile = ModuleResourceLoader::resourceURL($themeCssFilePath);
-                    Requirements::css($cssFile);
+                    Requirements::customCSS(file_get_contents(Director::baseFolder() .$themeCssFilePath));
+                    // $cssFile = ModuleResourceLoader::resourceURL($themeCssFilePath);
+                    // Requirements::css($cssFile);
                 }
             }
         }
