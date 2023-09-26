@@ -70,6 +70,12 @@ class ThemeColour extends DataObject
             $fields->insertAfter('Title', LiteralField::create('', '<div class="message notice">Colour field will become available after creating.</div>'));
         }
 
+        // If the Title === 'editmode', then we are in edit mode and we can display the CustomID field
+        if ($this->Title == 'editmode') {
+            $fields->insertAfter('Title', TextField::create('CustomID', 'Custom ID'))
+                ->setDescription('You are now in edit mode, allowing you to set a custom ID for this button. If you don\'t know what this means, please leave it blank.');
+        }
+
         return $fields;
     }
 
