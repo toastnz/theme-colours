@@ -25,7 +25,7 @@ class Helper
         }
         return false;
     }
-    
+
     static function getThemeColoursArray($id = null)
     {
         $array=[];
@@ -45,7 +45,7 @@ class Helper
     static function getThemeColourPalette($id = null)
     {
         $themeColours = self::getThemeColoursArray($id);
-        
+
         // We want a default 'None' option so add it to the $array
         $array = [
             'None' => '',
@@ -120,21 +120,23 @@ class Helper
             $colours = $siteConfig->ThemeColours();
             // If we have colours
             if ($colours) {
-                //get folder path from config
-               $folderPath = Config::inst()->get(SiteConfig::class, 'css_folder_path');
-               // if folder doesnt exist, create it
-               if (!file_exists(Director::baseFolder() . $folderPath)) {
-                   mkdir(Director::baseFolder() . $folderPath, 0777, true);
-               }
-               $CSSFilePath = Director::baseFolder() . $folderPath;
+                    //get folder path from config
+                $folderPath = Config::inst()->get(SiteConfig::class, 'css_folder_path');
+                // if folder doesnt exist, create it
+                if (!file_exists(Director::baseFolder() . $folderPath)) {
+                    mkdir(Director::baseFolder() . $folderPath, 0777, true);
+                }
+
+                $CSSFilePath = Director::baseFolder() . $folderPath;
+
                 $themeCSSFilePath = $CSSFilePath . $styleID . '-theme.css';
                 $editorCSSFilePath = $CSSFilePath . $styleID . '-editor.css';
 
                 // Remove files if they exist
                 if (file_exists($themeCSSFilePath)) unlink($themeCSSFilePath);
                 if (file_exists($editorCSSFilePath)) unlink($editorCSSFilePath);
-                
-                // Create a new file 
+
+                // Create a new file
                 $CSSVars = ':root {';
 
                 // Loop through colours and add CSS vars
@@ -172,7 +174,7 @@ class Helper
                 }
 
                 // Write to file
-                try { 
+                try {
                     file_put_contents($themeCSSFilePath, $themeStyles);
                     file_put_contents($editorCSSFilePath, $editorStyles);
                 } catch (\Exception $e) {
