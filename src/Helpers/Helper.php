@@ -28,7 +28,7 @@ class Helper
 
                // extend this method
                 $currentUser->extend('updateSuperAdmin', $allowed);
-                
+
                 return $allowed;
             }
         }
@@ -101,8 +101,12 @@ class Helper
 
         // get current colours
         foreach ($colours as $colour) {
+            // Grab the title and make it title case
+            $title = $colour->Title;
+            $title = ucwords($title);
+
             $colourFormats[] = [
-                'title'          => $colour->Title,
+                'title'          => $title,
                 'inline'         => 'span',
                 'classes'        => 'colour--' . $colour->ColourClasses,
                 'wrapper'        => true,
