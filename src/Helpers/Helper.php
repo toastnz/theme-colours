@@ -116,7 +116,7 @@ class Helper
             $title = ucwords($title);
 
             $colourFormats[] = [
-                'title'          => $title,
+                'title'          => 'Colours / ' . $title,
                 'inline'         => 'span',
                 'classes'        => 'colour--' . $colour->ColourClasses,
                 'wrapper'        => true,
