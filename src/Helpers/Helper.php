@@ -66,7 +66,7 @@ class Helper
         // Loop through the $themeColours and add the Title and Value to the $array
         foreach($themeColours as $themeColour){
             // If this colour doesn't have a hex code, skip it
-            if (!$themeColour->getColourHexCode()) continue;
+            if (!$themeColour->Colour) continue;
 
             // If this colour's hex code has already been added, skip it
             if (in_array($themeColour->getColourHexCode(), $hexCodes)) continue;
