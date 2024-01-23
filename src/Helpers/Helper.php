@@ -210,6 +210,40 @@ class Helper
         }
     }
 
+    static function getUniqueColourClass($primaryColourID, $secondaryColourID, $defaultColourID)
+    {
+        // Default the classname to ''
+        $classname = '';
+
+        // Get the primary and secondary colours
+        $primaryColour = self::getThemeColourFromID($primaryColourID);
+        $secondaryColour = self::getThemeColourFromID($secondaryColourID);
+        $defaultColour = self::getThemeColourFromID($defaultColourID);
+
+        // If either primary or secondary colour is null, use the default colour
+        if(!$primaryColour || !$secondaryColour){
+            if($defaultColour && $defaultColour->exists()){
+                // If secondary doesn't exist but primary does, and the default colour is the same as the primary colour
+                if(!$secondaryColour && $primaryColour && $primaryColour->getColourHexCode() == $defaultColour->getColourHexCode()){
+                    $classname = $primaryColour->getColourBrightness();
+                } else {
+                    $classname = 'colour--' . $defaultColour->getColourClassName();
+                }
+            }
+        } else {
+            // Both primary and secondary colours exist
+            // Check if the hex codes are the same
+            if($primaryColour->getColourHexCode() == $secondaryColour->getColourHexCode()){
+                // Get the theme colour, and set the colour to the theme colour, and also check if the colour is light or dark
+                $classname = $primaryColour->getColourBrightness();
+            } else {
+                // If the hex codes are not the same, return the primary colour
+                $classname = 'colour--' . $primaryColour->getColourClassName();
+            }
+        }
+
+        return $classname;
+    }
 
     static function getCurrentSiteConfig()
     {
