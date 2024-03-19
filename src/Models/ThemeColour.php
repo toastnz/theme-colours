@@ -59,10 +59,10 @@ class ThemeColour extends DataObject
                 ColorField::create('Colour', 'Colour')
                     ->setReadOnly(!$this->canChangeColour())
                     ->setDescription($this->canChangeColour() ? 'Please select a colour' : 'This is the default theme colour "' . $this->CustomID . '" and cannot be changed.'),
-                OptionsetField::create('ThemeColourTextColour', 'Default Text Appearance', [
+                OptionsetField::create('ThemeColourTextColour', 'Select Text Appearance', [
                     'light' => 'Light',
                     'dark' => 'Dark'
-                ])->setDescription('Select the text colour to be used when this theme colour is used as a background. If left unselected, a calculation will be made to determine the best text colour for legibility.')
+                ])->setDescription('Click on the text colour to be used when this theme colour is used as a background. If left unselected, a calculation will be made to determine the best text colour for legibility.')
             ]);
         } else {
             // Hide the CustomID field
@@ -148,14 +148,14 @@ class ThemeColour extends DataObject
             foreach ($this->getDefaultColours() as $colour) {
                 $key = key($colour);
                 $value = $colour[$key];
-       
+
                 $existingRecord = $siteConfig->ThemeColours()->filter([
                     'CustomID' => $key,
                     'SiteConfig.ID' => $siteConfig->ID
                 ])->first();
-    
+
                 if ($existingRecord) continue;
-    
+
                 $colour = new ThemeColour();
                 $colour->Title = $key;
                 $colour->CustomID = $key;
@@ -230,7 +230,7 @@ class ThemeColour extends DataObject
     public function getColourRestrictions()
     {
         $retrictions = [];
-    
+
         foreach ($this->getDefaultColours() as $colour) {
             // We need to get the key, which is the name of the colour
             $name = key($colour);
@@ -242,7 +242,7 @@ class ThemeColour extends DataObject
             $retrictions[$name] = [
                 'Colour' => ($value) ? true : false,
             ];
-            
+
             // True means the field is read only
         }
 
