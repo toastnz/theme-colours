@@ -197,10 +197,10 @@ class ThemeColour extends DataObject
     }
 
     // Method to return the hex code
-    public function getColourHexCode()
+    public function getColourHexCode($prefix = true)
     {
         // Prefix the hex code with a hash
-        $hex = '#';
+        $hex = ($prefix) ? '#' : '';
         // If we have a Colour, use that, otherwise use 'ffffff'
         $hex .= $this->Colour ?: 'ffffff';
         // Return the hex code
