@@ -197,14 +197,21 @@ class ThemeColour extends DataObject
     }
 
     // Method to return the hex code
-    public function getColourHexCode($prefix = true)
+    public function getColourHexCode()
     {
         // Prefix the hex code with a hash
-        $hex = ($prefix) ? '#' : '';
+        $hex = '#';
         // If we have a Colour, use that, otherwise use 'ffffff'
         $hex .= $this->Colour ?: 'ffffff';
         // Return the hex code
         return $hex;
+    }
+
+    // Method to return the hex code
+    public function getColourHex()
+    {
+        // Return the hex code or 'ffffff' with no hash
+        return $this->Colour ?: 'ffffff';
     }
 
     // Method to return Brightness
