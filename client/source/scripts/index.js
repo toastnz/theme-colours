@@ -20,8 +20,8 @@ const CMSObserver = new DomObserverController();
 Document setup
 ------------------------------------------------------------------*/
 
-// Observe the CMS for the toast-block-layouts fieldsets
-CMSObserver.observe('.colorpalette', (fieldsets) => {
+// Observe the CMS for the themecolourpalette fieldsets
+CMSObserver.observe('.themecolourpalette', (fieldsets) => {
   // Loop through the fieldsets
   (async () => {
     for (const fieldset of fieldsets) {
