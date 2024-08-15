@@ -38,8 +38,18 @@ CMSObserver.observe('.themecolourpalette', (fieldsets) => {
         // Get the computed background colour of the label as the value
         const value = window.getComputedStyle(label).backgroundColor;
 
-        // Set the value as a CSS variable on the body
-        document.body.style.setProperty(`--ThemeColours-${name}`, value);
+        const onChange = () => {
+          // If the input is not checked, return
+          if (!input.checked) return;
+          // Set the value as a CSS variable on the body
+          document.body.style.setProperty(`--ThemeColours-${name}`, value);
+        };
+
+        // Add an event listener to the input
+        input.addEventListener('change', onChange);
+
+        // Call the onChange function
+        onChange();
       }
     }
   })();
