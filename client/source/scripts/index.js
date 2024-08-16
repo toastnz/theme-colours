@@ -65,7 +65,7 @@ CMSObserver.observe('.themecolourpalette', (fieldsets) => {
             document.body.style.setProperty(`--ThemeColours-${name}_Text`, '#000');
           }
 
-          if (colour === 'rgba(0, 0, 0, 0)') {
+          if (value === 'rgba(0, 0, 0, 0)') {
             // Remove the style properties
             document.body.style.removeProperty(`--ThemeColours-${name}`);
             document.body.style.removeProperty(`--ThemeColours-${name}_Text`);
