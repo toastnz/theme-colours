@@ -6,8 +6,9 @@ use SilverStripe\ORM\DB;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextField;
-use Toast\Forms\IconOptionsetField;
 use SilverStripe\Security\Security;
+use SilverStripe\View\Requirements;
+use Toast\Forms\IconOptionsetField;
 use SilverStripe\Control\Controller;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\OptionsetField;
@@ -45,6 +46,8 @@ class ThemeColour extends DataObject
 
     public function getCMSFields()
     {
+        Requirements::javascript('toastnz/theme-colours: client/dist/scripts/index.js');
+
         $fields = parent::getCMSFields();
         $fields->removeByName(['SortOrder','SiteConfig','ColourClassName','CustomID']);
 
