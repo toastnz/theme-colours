@@ -32,4 +32,19 @@ class ThemeColourPaletteField extends OptionsetField
 
         return parent::Field($properties);
     }
+
+    public function getColourBrightness($colourID)
+    {
+        // Make sure we have a colour ID
+        if (!$colourID) return '';
+        // Get the ThemeColour
+        $colour = Helper::getThemeColourFromColourPaletteID($colourID);
+        // If there is no colour, return nothing
+        if (!$colour) return '';
+        // Once we have the colour, get the brightness
+        $brightness = $colour->getColourBrightness();
+
+        // Return the brightness
+        return $brightness;
+    }
 }

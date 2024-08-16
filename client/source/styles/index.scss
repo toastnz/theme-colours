@@ -1,16 +1,11 @@
 $label-width: 50px;
 $label-height: 50px;
-$label-margin: 5px 15px 5px 5px;
-$outline-color: #fff;
-$border-color: #999;
+$label-margin: 0 10px 10px 0;
+$border-radius: 3px;
+$border-color: var(--cms-border-colour, #999);
 $checked-outline-color: #ddd;
 $checked-content-color: #000;
 $checked-text-shadow-color: #fff;
-$grouped-header-padding: 8px 8px 8px 0;
-$grouped-header-line-height: 16px;
-$grouped-header-font-weight: bold;
-$grouped-header-text-shadow: 1px 1px 0 #fff;
-$grouped-header-font-size: 12px;
 
 .themecolourpalette {
   ul {
@@ -28,17 +23,16 @@ $grouped-header-font-size: 12px;
 
     label {
       cursor: pointer;
+      position: relative;
       width: $label-width;
       height: $label-height;
       display: block;
       margin: $label-margin;
-      outline: 1px solid $outline-color;
       border: 1px solid $border-color;
+      border-radius: $border-radius;
     }
 
     input:checked + label {
-      outline: 5px solid $checked-outline-color;
-      position: relative;
 
       &:after {
         position: absolute;
@@ -48,10 +42,31 @@ $grouped-header-font-size: 12px;
         text-align: center;
         content: "\2714";
         color: $checked-content-color;
-        text-shadow: -1px -1px 0 $checked-text-shadow-color,
-                     1px -1px 0 $checked-text-shadow-color,
-                     -1px 1px 0 $checked-text-shadow-color,
-                     1px 1px 0 $checked-text-shadow-color;
+        text-shadow:
+          -1px -1px 0 $checked-text-shadow-color,
+          1px -1px 0 $checked-text-shadow-color,
+          -1px 1px 0 $checked-text-shadow-color,
+          1px 1px 0 $checked-text-shadow-color;
+      }
+    }
+
+    input[value="None"],
+    input[value="none"],
+    input[value="transparent"] {
+      +label:before {
+        content: 'unset';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        opacity: .6;
+        font-size: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        transform: translate(-50%, -50%);
+      }
+
+      &:checked+label:before {
+        content: none;
       }
     }
   }
