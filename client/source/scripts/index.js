@@ -95,7 +95,7 @@ CMSObserver.observe('.themecolourpalette', (fieldsets) => {
           // Get the brightness attribute from the input
           const brightnessAttribute = input.getAttribute('data-brightness');
           // Calculate the brightness
-          const brightness = (brightnessAttribute) ? (brightnessAttribute === 'light') ? 255 : 0 : getBrightess(colour);
+          const brightness = (brightnessAttribute) ? (brightnessAttribute === 'light') ? 255 : 0 : getBrightess(value);
 
           // Set the value as a CSS variable on the body
           document.body.style.setProperty(`--ThemeColours-${name}`, value);
