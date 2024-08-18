@@ -121,16 +121,18 @@ CMSObserver.observe('.themecolourpalette', (fieldsets) => {
             main.style.removeProperty(`--ThemeColours-${name}_Text`);
           }
 
-          // Loop through the html text editors
-          for (const editor of htmlEditors) {
-            if (value === 'rgba(0, 0, 0, 0)') {
-              editor.contentDocument.body.classList.remove('light', 'dark');
-              return;
-            }
+          if (fieldset === fieldsets[0]) {
+            // Loop through the html text editors
+            for (const editor of htmlEditors) {
+              if (value === 'rgba(0, 0, 0, 0)') {
+                editor.contentDocument.body.classList.remove('light', 'dark');
+                return;
+              }
 
-            // Switch between light and dark classes
-            editor.contentDocument.body.classList.toggle('light', brightness > 130);
-            editor.contentDocument.body.classList.toggle('dark', brightness <= 130);
+              // Switch between light and dark classes
+              editor.contentDocument.body.classList.toggle('light', brightness > 130);
+              editor.contentDocument.body.classList.toggle('dark', brightness <= 130);
+            }
           }
         };
 
@@ -143,6 +145,8 @@ CMSObserver.observe('.themecolourpalette', (fieldsets) => {
     }
   })();
 });
+
+CMSObserver.o
 
 // Look for the theme colour inputs
 CMSObserver.observe('#Form_ItemEditForm_Colour', (inputs) => {
