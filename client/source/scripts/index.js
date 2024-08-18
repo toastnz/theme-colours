@@ -73,6 +73,12 @@ Document setup
 
 // Observe the CMS for the themecolourpalette fieldsets
 CMSObserver.observe('.themecolourpalette', (fieldsets) => {
+  // Find the main cms element
+  const main = document.querySelector('#Root_Main');
+
+  // If the main element doesn't exist, return
+  if (!main) return;
+
   // Loop through the fieldsets
   (async () => {
     for (const fieldset of fieldsets) {
@@ -98,19 +104,19 @@ CMSObserver.observe('.themecolourpalette', (fieldsets) => {
           const brightness = (brightnessAttribute) ? (brightnessAttribute === 'light') ? 255 : 0 : getBrightess(value);
 
           // Set the value as a CSS variable on the body
-          document.body.style.setProperty(`--ThemeColours-${name}`, value);
+          main.style.setProperty(`--ThemeColours-${name}`, value);
 
           // Assign a text colour based on the brightness
           if (brightness < 130) {
-            document.body.style.setProperty(`--ThemeColours-${name}_Text`, '#fff');
+            main.style.setProperty(`--ThemeColours-${name}_Text`, '#fff');
           } else {
-            document.body.style.setProperty(`--ThemeColours-${name}_Text`, '#000');
+            main.style.setProperty(`--ThemeColours-${name}_Text`, '#000');
           }
 
           if (value === 'rgba(0, 0, 0, 0)') {
             // Remove the style properties
-            document.body.style.removeProperty(`--ThemeColours-${name}`);
-            document.body.style.removeProperty(`--ThemeColours-${name}_Text`);
+            main.style.removeProperty(`--ThemeColours-${name}`);
+            main.style.removeProperty(`--ThemeColours-${name}_Text`);
           }
         };
 
