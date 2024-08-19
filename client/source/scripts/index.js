@@ -146,8 +146,6 @@ CMSObserver.observe('.themecolourpalette', (fieldsets) => {
   })();
 });
 
-CMSObserver.o
-
 // Look for the theme colour inputs
 CMSObserver.observe('#Form_ItemEditForm_Colour', (inputs) => {
   // Grab the colour input
