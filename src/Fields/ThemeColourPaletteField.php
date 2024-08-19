@@ -19,9 +19,11 @@ class ThemeColourPaletteField extends OptionsetField
         $source = $colourPalette;
 
         $this->setSource($source);
+
         if (!isset($title)) {
             $title = $name;
         }
+
         parent::__construct($name, $title, $source, $value);
     }
 
@@ -46,5 +48,20 @@ class ThemeColourPaletteField extends OptionsetField
 
         // Return the brightness
         return $brightness;
+    }
+
+    public function getColourName($colourID)
+    {
+        // Make sure we have a colour ID
+        if (!$colourID) return '';
+        // Get the ThemeColour
+        $colour = Helper::getThemeColourFromColourPaletteID($colourID);
+        // If there is no colour, return nothing
+        if (!$colour) return '';
+        // Once we have the colour, get the name
+        $name = $colour->Title;
+
+        // Return the name
+        return $name;
     }
 }
