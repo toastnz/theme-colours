@@ -71,8 +71,12 @@ const calculateColorContrast = (color1, color2) => {
 Document setup
 ------------------------------------------------------------------*/
 
+
 // Observe the CMS for the themecolourpalette fieldsets
 CMSObserver.observe('ul.themecolourpalette', (fieldsets) => {
+  // Set up an object to store the theme colours
+  window.ThemeColours = {};
+
   // Find the main cms element
   const main = document.querySelector('#Root_Main');
 
@@ -120,6 +124,11 @@ CMSObserver.observe('ul.themecolourpalette', (fieldsets) => {
             main.style.removeProperty(`--ThemeColours-${name}`);
             main.style.removeProperty(`--ThemeColours-${name}_Text`);
           }
+
+          window.ThemeColours[name] = {
+            value,
+            brightness: (brightness > 130) ? 'light' : 'dark',
+          };
 
           // fire a window event and pass the value and the brightness
           window.dispatchEvent(new CustomEvent('ThemeColourChange', { detail: { input, name, value, brightness: (brightness > 130) ? 'light' : 'dark' } }));
