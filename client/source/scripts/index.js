@@ -122,7 +122,7 @@ CMSObserver.observe('ul.themecolourpalette', (fieldsets) => {
           }
 
           // fire a window event and pass the value and the brightness
-          window.dispatchEvent(new CustomEvent('ThemeColourChange', { detail: { input, name, value, brightness: (brightness < 130) ? 'light' : 'dark' } }));
+          window.dispatchEvent(new CustomEvent('ThemeColourChange', { detail: { input, name, value, brightness: (brightness > 130) ? 'light' : 'dark' } }));
 
           if (fieldset === fieldsets[0]) {
             // Loop through the html text editors
