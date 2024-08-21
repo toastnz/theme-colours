@@ -72,7 +72,7 @@ Document setup
 ------------------------------------------------------------------*/
 
 // Observe the CMS for the themecolourpalette fieldsets
-CMSObserver.observe('.themecolourpalette', (fieldsets) => {
+CMSObserver.observe('ul.themecolourpalette', (fieldsets) => {
   // Find the main cms element
   const main = document.querySelector('#Root_Main');
 
@@ -120,6 +120,9 @@ CMSObserver.observe('.themecolourpalette', (fieldsets) => {
             main.style.removeProperty(`--ThemeColours-${name}`);
             main.style.removeProperty(`--ThemeColours-${name}_Text`);
           }
+
+          // fire a window event and pass the value and the brightness
+          window.dispatchEvent(new CustomEvent('ThemeColourChange', { detail: { input, name, value, brightness: (brightness < 130) ? 'light' : 'dark' } }));
 
           if (fieldset === fieldsets[0]) {
             // Loop through the html text editors
