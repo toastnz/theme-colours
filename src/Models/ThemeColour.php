@@ -47,6 +47,7 @@ class ThemeColour extends DataObject
     public function getCMSFields()
     {
         Requirements::javascript('toastnz/theme-colours: client/dist/scripts/index.js');
+        Requirements::css('toastnz/theme-colours: client/dist/styles/index.css');
 
         $fields = parent::getCMSFields();
         $fields->removeByName(['SortOrder','SiteConfig','ColourClassName','CustomID']);
