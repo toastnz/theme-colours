@@ -1,4 +1,4 @@
-const getBrightess = (color) => {
+export function getBrightess(color) {
   // Convert the color to an array
   const rgb = color.replace(/[^\d,]/g, '').split(',');
   // Calculate the brightness
@@ -7,7 +7,7 @@ const getBrightess = (color) => {
   return brightness;
 }
 
-const calculateColorContrast = (color1, color2) => {
+export function calculateColorContrast(color1, color2) {
   // Helper function to convert hex to RGB
   const hexToRGB = (hex) => {
     let r = parseInt(hex.substring(1, 3), 16);
