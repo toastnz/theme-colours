@@ -29,10 +29,25 @@ class ThemeColourPaletteField extends OptionsetField
 
     public function Field($properties = [])
     {
-        Requirements::javascript('toastnz/theme-colours: client/dist/scripts/index.js');
+        // Requirements::javascript('toastnz/theme-colours: client/dist/scripts/wysiwyg.js');
         Requirements::css('toastnz/theme-colours: client/dist/styles/index.css');
 
         return parent::Field($properties);
+    }
+
+    public function getColour()
+    {
+        // Get the current value
+        $value = $this->Value();
+        // Get the ThemeColour
+        $colour = Helper::getThemeColourFromColourPaletteID($value);
+        // If there is no colour, return nothing
+        if (!$colour) return '';
+        // Once we have the colour, get the colour
+        $colour = $colour->Colour;
+
+        // Return the colour
+        return $colour;
     }
 
     public function getColourBrightness($colourID)

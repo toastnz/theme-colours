@@ -46,7 +46,7 @@ class ThemeColour extends DataObject
 
     public function getCMSFields()
     {
-        Requirements::javascript('toastnz/theme-colours: client/dist/scripts/index.js');
+        Requirements::javascript('toastnz/theme-colours: client/dist/scripts/accessibility.js');
         Requirements::css('toastnz/theme-colours: client/dist/styles/index.css');
 
         $fields = parent::getCMSFields();
