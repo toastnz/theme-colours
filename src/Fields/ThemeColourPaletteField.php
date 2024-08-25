@@ -29,7 +29,7 @@ class ThemeColourPaletteField extends OptionsetField
 
     public function Field($properties = [])
     {
-        // Requirements::javascript('toastnz/theme-colours: client/dist/scripts/wysiwyg.js');
+        Requirements::javascript('toastnz/theme-colours: client/dist/scripts/colour-change.js');
         Requirements::css('toastnz/theme-colours: client/dist/styles/index.css');
 
         return parent::Field($properties);

@@ -61,24 +61,6 @@ CMSObserver.observe('ul.themecolourpalette', (fieldsets) => {
           const brightnessAttribute = input.getAttribute('data-brightness');
           // Calculate the brightness
           const brightness = (brightnessAttribute) ? (brightnessAttribute === 'light') ? 255 : 0 : getBrightess(value);
-          // Find all the html text editor iframes
-          const htmlEditors = document.querySelectorAll('.tox-edit-area__iframe');
-
-          // Set the value as a CSS variable on the body
-          main.style.setProperty(`--ThemeColours-${name}`, value);
-
-          // Assign a text colour based on the brightness
-          if (brightness < 130) {
-            main.style.setProperty(`--ThemeColours-${name}_Text`, '#fff');
-          } else {
-            main.style.setProperty(`--ThemeColours-${name}_Text`, '#000');
-          }
-
-          if (value === 'rgba(0, 0, 0, 0)') {
-            // Remove the style properties
-            main.style.removeProperty(`--ThemeColours-${name}`);
-            main.style.removeProperty(`--ThemeColours-${name}_Text`);
-          }
 
           window.ThemeColours[name] = {
             value,
@@ -87,20 +69,6 @@ CMSObserver.observe('ul.themecolourpalette', (fieldsets) => {
 
           // fire a window event and pass the value and the brightness
           window.dispatchEvent(new CustomEvent('ThemeColourChange', { detail: { input, name, value, brightness: (brightness > 130) ? 'light' : 'dark' } }));
-
-          if (fieldset === fieldsets[0]) {
-            // Loop through the html text editors
-            for (const editor of htmlEditors) {
-              if (value === 'rgba(0, 0, 0, 0)') {
-                editor.contentDocument.body.classList.remove('light', 'dark');
-                return;
-              }
-
-              // Switch between light and dark classes
-              editor.contentDocument.body.classList.toggle('light', brightness > 130);
-              editor.contentDocument.body.classList.toggle('dark', brightness <= 130);
-            }
-          }
         };
 
         // Add an event listener to the input
