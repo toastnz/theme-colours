@@ -42,6 +42,9 @@ class Helper
         $siteConfig = $id ? SiteConfig::get()->byID($id) : SiteConfig::current_site_config();
 
         if ($colours = $siteConfig->ThemeColours()){
+            // Sort the colours by SortOrder
+            $colours = $colours->sort('SortOrder');
+
             foreach($colours as $colour){
                 // Add the colour to the array
                 $array[$colour->getColourClassName()] = $colour;
