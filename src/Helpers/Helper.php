@@ -195,7 +195,7 @@ class Helper
                         $themeStyles .= 'background-color: var(--' . $className . ');';
                         $themeStyles .= '}';
                         $themeStyles .= 'li:has(> .colour--' . $className . ':first-child) {';
-                        $themeStyles .= '--_marker-color: var(--' . $className . ');';
+                        $themeStyles .= '--_marker-colour: var(--' . $className . ');';
                         $themeStyles .= '}';
 
                         // Editor styles
@@ -204,7 +204,7 @@ class Helper
                         $editorStyles .= '}';
 
                         $editorStyles .= 'body.mce-content-body  li:has(> .colour--' . $className . ':first-child) {';
-                        $editorStyles .= '--_marker-color: var(--' . $className . ');';
+                        $editorStyles .= '--_marker-colour: var(--' . $className . ');';
                         $editorStyles .= '}';
                     }
                 }
