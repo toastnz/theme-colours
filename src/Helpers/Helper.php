@@ -197,7 +197,6 @@ class Helper
                         $themeStyles .= 'li:has(> .colour--' . $className . ':first-child)::marker{';
                         $themeStyles .= 'color: var(--' . $className . ');';
                         $themeStyles .= '}';
-        }
 
                         // Editor styles
                         $editorStyles .= 'body.mce-content-body  .colour--' . $className . '{';
