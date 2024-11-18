@@ -194,9 +194,17 @@ class Helper
                         $themeStyles .= '.background-colour--' . $className . '{';
                         $themeStyles .= 'background-color: var(--' . $className . ');';
                         $themeStyles .= '}';
+                        $themeStyles .= 'li:has(> .colour--' . $className . ':first-child)::marker{';
+                        $themeStyles .= 'color: var(--' . $className . ');';
+                        $themeStyles .= '}';
+        }
 
                         // Editor styles
                         $editorStyles .= 'body.mce-content-body  .colour--' . $className . '{';
+                        $editorStyles .= 'color: var(--' . $className . ');';
+                        $editorStyles .= '}';
+
+                        $editorStyles .= 'body.mce-content-body  li:has(> .colour--' . $className . ':first-child)::marker{';
                         $editorStyles .= 'color: var(--' . $className . ');';
                         $editorStyles .= '}';
                     }
