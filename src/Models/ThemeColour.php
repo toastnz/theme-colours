@@ -50,7 +50,7 @@ class ThemeColour extends DataObject
         Requirements::css('toastnz/theme-colours: client/dist/styles/index.css');
 
         $fields = parent::getCMSFields();
-        $fields->removeByName(['SortOrder','SiteConfig','ColourClassName','CustomID']);
+        $fields->removeByName(['SortOrder','SiteConfig','ColourClassName','CustomID', 'ThemeColourTextColour']);
 
         $fields->addFieldsToTab('Root.Main', [
             TextField::create('Title', 'Title')
