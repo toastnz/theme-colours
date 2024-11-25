@@ -58,30 +58,42 @@ class Helper
     {
         $themeColours = self::getThemeColoursArray($id);
 
-        // Keep track of all the hex codes we've already added`
-        $hexCodes = [];
-
         // We want a default 'None' option so add it to the $array
         $array = [
             'None' => '',
         ];
 
-        // Loop through the $themeColours and add the Title and Value to the $array
+        // Put all the colours in an array
         foreach($themeColours as $themeColour){
-            // If this colour doesn't have a hex code, skip it
-            if (!$themeColour->Colour) continue;
-
-            // If this colour's hex code has already been added, skip it
-            if (in_array($themeColour->getColourHexCode(), $hexCodes)) continue;
-
-            // Add the hex code to the $hexCodes array
-            $hexCodes[] = $themeColour->getColourHexCode();
-
-            // Add the colour to the $array
             $array[$themeColour->getColourPaletteID()] = $themeColour->getColourHexCode();
         }
 
+        // Make sure all the $array values are unique
+        $array = array_unique($array);
+
         return $array;
+
+        // // Keep track of all the hex codes we've already added
+        // $hexCodes = [];
+
+        // // Loop through the $themeColours and add the Title and Value to the $array
+        // foreach($themeColours as $themeColour){
+        //     // If this colour doesn't have a hex code, skip it
+        //     if (!$themeColour->Colour) continue;
+
+        //     // If this colour's hex code has already been added, skip it
+        //     if (in_array($themeColour->getColourHexCode(), $hexCodes)) continue;
+
+        //     // Add the hex code to the $hexCodes array
+        //     $hexCodes[] = $themeColour->getColourHexCode();
+
+        //     // Add the colour to the $array
+        //     $array[$themeColour->getColourPaletteID()] = $themeColour->getColourHexCode();
+        // }
+
+        // var_dump($array);
+
+        // return $array;
     }
 
     static function getThemeColourFromColourPaletteID($colourPaletteID)
