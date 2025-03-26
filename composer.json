@@ -23,8 +23,8 @@
   "require": {
     "php": ">=8.3",
     "silverstripe/cms": "^6",
-    "toastnz/silverstripe-colorpicker": "6.0.0-beta1",
-    "toastnz/silverstripe-colorpalette": "6.0.0-beta1"
+    "tractorcow/silverstripe-colorpicker": "^6",
+    "heyday/silverstripe-colorpalette": "^6"
   },
   "extra": {
     "resources-dir": "_resources"
