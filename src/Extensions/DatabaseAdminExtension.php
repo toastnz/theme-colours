@@ -3,11 +3,11 @@
 namespace Toast\ThemeColours\Extensions;
 
 use SilverStripe\Control\Director;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\Security\Security;
 use Toast\ThemeColours\Helpers\Helper;
 
-class DatabaseAdminExtension extends DataExtension
+class DatabaseAdminExtension extends Extension
 {
     public function onAfterBuild()
     {

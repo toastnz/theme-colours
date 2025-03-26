@@ -13,7 +13,7 @@ use SilverStripe\Control\Director;
 use SilverStripe\Core\Environment;
 use SilverStripe\Forms\EmailField;
 use SilverStripe\Forms\HeaderField;
-use SilverStripe\ORM\DataExtension;
+use SilverStripe\Core\Extension;
 use SilverStripe\Security\Security;
 use Sheadawson\Linkable\Models\Link;
 use SilverStripe\Control\Controller;
@@ -34,7 +34,7 @@ use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
 use SilverStripe\Forms\GridField\GridFieldConfig_RelationEditor;
 
-class SiteConfigExtension extends DataExtension
+class SiteConfigExtension extends Extension
 {
 
     private static $many_many = [
