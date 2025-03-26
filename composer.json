@@ -22,10 +22,22 @@
   ],
   "require": {
     "php": ">=8.3",
-    "silverstripe/cms": "^6",
-    "tractorcow/silverstripe-colorpicker": "6.0.0-beta1",
-    "heyday/silverstripe-colorpalette": "6.0.1-beta1"
+    "silverstripe/cms": "^6"
   },
+  "require-dev": { 
+    "tractorcow/silverstripe-colorpicker": "6.0.0-beta1-dev",
+    "heyday/silverstripe-colorpalette": "6.0.1-beta1-dev"
+},
+"repositories": [
+    {
+        "type": "git",
+        "url": "https://github.com/toastnz/silverstripe-colorpicker"
+    },
+    {
+      "type": "git",
+      "url": "https://github.com/toastnz/silverstripe-colorpalette"
+  }
+],
   "extra": {
     "resources-dir": "_resources"
   }
