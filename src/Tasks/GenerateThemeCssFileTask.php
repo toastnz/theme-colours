@@ -2,25 +2,29 @@
 
 namespace Toast\ThemeColours\Tasks;
 
-use SilverStripe\Control\Controller;
-use SilverStripe\Control\Director;
-use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Dev\BuildTask;
-use SilverStripe\SiteConfig\SiteConfig;
+use SilverStripe\Control\Director;
+use SilverStripe\Control\Controller;
+use SilverStripe\Control\HTTPRequest;
 use Toast\ThemeColours\Helpers\Helper;
+use SilverStripe\SiteConfig\SiteConfig;
+use SilverStripe\PolyExecution\PolyOutput;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
 
 class GenerateThemeCssFileTask extends BuildTask
 {
 
-    private static $segment = 'generate_theme_css_file';
+    protected static string $commandName = 'generate_theme_css_file';
 
-    protected $title = 'Regenerate Theme CSS file';
+    protected string $title= 'Regenerate Theme CSS file';
 
-    protected $description = 'Regenerates Theme CSS file from configured colours in SiteConfig for main site only';
+    protected static string $description = 'Regenerates Theme CSS file from configured colours in SiteConfig for main site only';
 
-    public function run($request)
+    protected function execute(InputInterface $input, PolyOutput $output): int
     {
         Helper::generateCSSFiles();
+        return Command::SUCCESS;
     }
 
     function colourBrightness($hex, $percent)
