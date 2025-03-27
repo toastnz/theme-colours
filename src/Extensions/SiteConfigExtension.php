@@ -76,7 +76,7 @@ class SiteConfigExtension extends Extension
 
     public function onAfterWrite()
     {
-        parent::onAfterWrite();
+        // parent::onAfterWrite();
         // only create themecolour if it already exists and no themecolours at all
         if($this->owner->ID && !$this->owner->ThemeColours()->exists()){
             $colour = new ThemeColour();
